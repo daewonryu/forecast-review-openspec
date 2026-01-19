@@ -1,0 +1,70 @@
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python tooling caches
+.pytest_cache/
+.mypy_cache/
+.cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+
+# uv (Python package manager)
+.uv/
+
+# Node / JavaScript / TypeScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+bun.lockb
+
+# Build outputs
+dist/
+build/
+coverage/
+.eslintcache
+
+# Environment & secrets
+.env
+.env.*
+*.env
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Frontend specific
+frontend/dist/
+
+# Backend specific
+backend/.coverage
+backend/htmlcov/
+backend/.pytest_cache/
+backend/.venv/
