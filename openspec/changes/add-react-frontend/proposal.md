@@ -54,7 +54,7 @@ Implement a React-based web interface for **FanEcho** that provides an intuitive
 - **No Visual Feedback:** Results are JSON only, making it hard to interpret scores and insights
 
 ### Success Criteria
-1. Users can complete the full workflow (generate personas → run simulation → view history → view insights) without technical knowledge
+1. Users can complete the full workflow (generate personas → run simulation → view insights) without technical knowledge
 2. Simulation results display within 2 seconds of API response completion
 3. UI is responsive and works on desktop and tablet devices
 4. All backend API endpoints have corresponding UI components

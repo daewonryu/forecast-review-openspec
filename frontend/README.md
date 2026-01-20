@@ -99,7 +99,8 @@ src/
 2. Enter an audience description (e.g., "Tech enthusiasts interested in AI")
 3. Click "Generate 5 Personas"
 4. Wait 5-10 seconds for generation
-5. Review the generated personas
+5. Review the generated personas in the library below
+6. **Click on any persona set to view detailed individual personas** with their traits, loyalty levels, and core values
 
 ### 2. Run Simulation
 

@@ -40,7 +40,7 @@ class Persona(Base):
     user_id = Column(BigInteger, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     set_id = Column(String(36), nullable=False, index=True)
     name = Column(String(50), nullable=False)
-    archetype = Column(String(50), nullable=False)
+    archetype = Column(String(100), nullable=False)
     loyalty_level = Column(Integer, nullable=False)
     core_values = Column(JSON, nullable=False)
     audience_description = Column(Text, nullable=False)

@@ -82,19 +82,35 @@ Generate 5 diverse AI personas based on an audience description.
 
 #### `GET /api/personas/sets/{set_id}`
 
-Retrieve a specific persona set by ID.
+Retrieve a specific persona set by ID with all individual persona details. This endpoint is used when users click on a persona set to view the complete information about each persona.
 
 **Response (200 OK):**
 ```json
 {
   "set_id": "550e8400-e29b-41d4-a716-446655440000",
-  "personas": [...],
+  "personas": [
+    {
+      "id": 123,
+      "set_id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "The Veteran",
+      "archetype": "Long-time AI enthusiast",
+      "loyalty_level": 9,
+      "core_values": ["Transparency", "Innovation", "Community"],
+      "audience_description": "Tech enthusiasts interested in AI and machine learning",
+      "created_at": "2026-01-14T10:30:00Z"
+    }
+    // ... 4 more personas
+  ],
   "created_at": "2026-01-14T10:30:00Z"
 }
 ```
 
 **Error Responses:**
 - `404 Not Found`: Persona set doesn't exist
+
+**Usage:**
+- Frontend PersonaLibrary component uses this to display detailed persona cards when a set is selected
+- Shows individual persona traits, loyalty levels, and core values
 
 ---
 

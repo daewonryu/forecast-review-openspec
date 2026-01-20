@@ -12,7 +12,7 @@ PERSONA_GENERATION_USER_PROMPT = """Generate exactly 5 distinct personas for the
 **Audience Description:** {audience_description}
 
 For each persona, provide:
-1. **Name/Archetype**: A memorable archetype name (e.g., "The Veteran", "The Skeptic", "The Casual Fan")
+1. **Name/Archetype**: A memorable archetype name (e.g., "The Veteran", "The Skeptic", "The Casual Fan"). Keep archetype description concise (2-5 words preferred, max 15 words).
 2. **Loyalty Level**: An integer from 1-10, where 1 is "barely interested" and 10 is "die-hard fan"
 3. **Core Values**: 2-4 key values that drive their decisions (e.g., "Transparency", "Value for Money", "Exclusivity", "Community", "Innovation")
 

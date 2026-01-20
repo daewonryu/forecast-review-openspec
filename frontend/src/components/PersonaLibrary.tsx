@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { listPersonaSets } from '../api';
+import { listPersonaSets, getPersonaSet } from '../api';
 import type { PersonaSetSummary } from '../types/types';
+import PersonaCard from './PersonaCard';
 
 interface PersonaLibraryProps {
   userId: number;
@@ -16,6 +17,13 @@ export default function PersonaLibrary({
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['personaSets', userId],
     queryFn: () => listPersonaSets(userId, 1, 50),
+  });
+
+  // Fetch detailed personas for the selected set
+  const { data: selectedSetData, isLoading: loadingDetails } = useQuery({
+    queryKey: ['personaSet', selectedSetId],
+    queryFn: () => getPersonaSet(selectedSetId!),
+    enabled: !!selectedSetId,
   });
 
   if (isLoading) return <div className="loading">Loading persona sets...</div>;
@@ -35,30 +43,50 @@ export default function PersonaLibrary({
           <p>No persona sets yet. Generate your first set above!</p>
         </div>
       ) : (
-        <div className="persona-sets-grid">
-          {data?.sets.map((set: PersonaSetSummary) => (
-            <div
-              key={set.set_id}
-              className={`persona-set-card ${
-                selectedSetId === set.set_id ? 'selected' : ''
-              }`}
-              onClick={() => onSelectSet?.(set.set_id)}
-            >
-              <h3>{set.audience_description}</h3>
-              <div className="set-meta">
-                <span className="persona-count">
-                  {set.persona_count} personas
-                </span>
-                <span className="created-date">
-                  {new Date(set.created_at).toLocaleDateString()}
-                </span>
+        <>
+          <div className="persona-sets-grid">
+            {data?.sets.map((set: PersonaSetSummary) => (
+              <div
+                key={set.set_id}
+                className={`persona-set-card ${
+                  selectedSetId === set.set_id ? 'selected' : ''
+                }`}
+                onClick={() => onSelectSet?.(set.set_id)}
+              >
+                <h3>{set.audience_description}</h3>
+                <div className="set-meta">
+                  <span className="persona-count">
+                    {set.persona_count} personas
+                  </span>
+                  <span className="created-date">
+                    {new Date(set.created_at).toLocaleDateString()}
+                  </span>
+                </div>
+                {selectedSetId === set.set_id && (
+                  <div className="selected-badge">✓ Selected</div>
+                )}
               </div>
-              {selectedSetId === set.set_id && (
-                <div className="selected-badge">✓ Selected</div>
+            ))}
+          </div>
+
+          {/* Display personas when a set is selected */}
+          {selectedSetId && (
+            <div className="persona-details-section">
+              <h3>Personas in this set</h3>
+              {loadingDetails ? (
+                <div className="loading">Loading personas...</div>
+              ) : selectedSetData?.personas ? (
+                <div className="personas-grid">
+                  {selectedSetData.personas.map((persona) => (
+                    <PersonaCard key={persona.id} persona={persona} />
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state">No personas found in this set.</div>
               )}
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
 
       {data && (
